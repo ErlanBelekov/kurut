@@ -1,0 +1,23 @@
+version: '3.6'
+services:
+  # App services
+  postgres:
+    image: postgres:12
+    restart: always
+    volumes:
+      - orm_data:/var/lib/postgresql/data
+    networks:
+      - default
+    environment:
+      POSTGRES_DB: development
+      POSTGRES_PASSWORD: postgrespassword
+    ports:
+      - 5432:5432
+
+networks:
+  default:
+    driver: bridge
+    name: hub_default
+
+volumes:
+  orm_data:
