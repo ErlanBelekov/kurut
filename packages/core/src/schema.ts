@@ -1,3 +1,3 @@
-import { defineModel } from 'defineModel';
+import { defineModel } from './defineModel';
 
 export const customers = defineModel('customers', {});

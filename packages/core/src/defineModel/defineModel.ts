@@ -1,5 +1,5 @@
-import { FieldDefinition, KurutModel } from 'types';
-import { getClient } from 'getClient/index';
+import { FieldDefinition, KurutModel } from '../types';
+import { getClient } from '../getClient';
 
 // pass table definition to defineModel, and it will return a type-safe TS table definition
 export function defineModel<TFields extends Record<string, FieldDefinition>>(
