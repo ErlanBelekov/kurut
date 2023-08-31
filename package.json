@@ -1,5 +1,5 @@
 {
-  "name": "my-orm",
+  "name": "kurut",
   "version": "1.0.0",
   "description": "A next-gen ORM for your next-gen projects",
   "main": "index.js",
