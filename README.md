@@ -31,11 +31,11 @@ Intended Packages Structure:
 ```
 @kurut/core - core functionality, such as model definition, CRUD methods, connections
 @kurut/cli - CLI helper
-@kurut/types - TypeScript definitions, shared and re-used between packages
+@kurut/docs - Docusaurus documentation
 @kurut/postgres - Postgres adapter
 @kurut/mysql - MySQL adapter, should be compatible with PlanetScale too
 @kurut/cockroachdb - CockroachDB Adapter
-@kurut/{INSERT-DATABASE} - it should be simple to add new DB adapters, each adhering @kurut/core functionality
+@kurut/{INSERT-DATABASE} - it should be simple to add new DB adapters, each adhering to @kurut/core functionality
 ```
 
 Example API:

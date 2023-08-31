@@ -1,4 +1,4 @@
-import { KurutModel } from './types';
+import { KurutModel } from 'types';
 
 const dotenv = require('dotenv');
 dotenv.config();
