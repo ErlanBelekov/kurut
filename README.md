@@ -28,6 +28,8 @@ What I need to build:
 Example API:
 
 ```
+import { defineModel, string, int, relation, timestamp } from "@kurut/core"
+
 export const User = defineModel("User", {
   id: string().id(), // id() marks the column as primary key. multi column primary keys should be available too
   email: string().unique(), // will automatically generate a unique index in migration
