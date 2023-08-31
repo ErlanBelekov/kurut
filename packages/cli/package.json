@@ -1,11 +1,15 @@
 {
-  "name": "@my-orm/cli",
+  "name": "@kurut/cli",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev src/index.ts",
+    "migrate": "ts-node-dev src/index.ts migrate",
+    "migrate-new": "ts-node-dev src/index.ts migrate new"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +19,9 @@
     "figlet": "^1.6.0"
   },
   "devDependencies": {
+    "@types/figlet": "^1.5.6",
     "@types/node": "^20.5.6",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   }
 }
