@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": false,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "target": "es6",
+    "module": "commonjs",
+    "sourceMap": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "node"
+  }
+}
