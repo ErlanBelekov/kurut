@@ -1,6 +1,7 @@
 {
   "name": "kurut",
   "version": "1.0.0",
+  "packageManager": "pnpm@7.9.0",
   "description": "A next-gen ORM for your next-gen projects",
   "main": "index.js",
   "scripts": {
@@ -8,5 +9,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
 }

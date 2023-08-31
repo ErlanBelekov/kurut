@@ -2,6 +2,12 @@ lockfileVersion: 5.4
 
 importers:
 
+  .:
+    specifiers:
+      typescript: ^5.2.2
+    devDependencies:
+      typescript: 5.2.2
+
   packages/cli:
     specifiers:
       '@types/figlet': ^1.5.6
