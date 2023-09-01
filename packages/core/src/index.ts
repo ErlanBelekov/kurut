@@ -21,10 +21,7 @@ export function kurut<T extends Record<string, KurutModel<Y>>, Y>(
   // construct a type-safe object
   let client: KurutClient<T> = params.schema;
 
-  console.log(params.schema);
-
   for (const modelName in params.schema) {
-    console.log('modelName, ', modelName, params.schema[modelName]);
     client[modelName] = params.schema[modelName];
   }
 

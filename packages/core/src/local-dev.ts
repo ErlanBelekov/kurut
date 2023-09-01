@@ -1,13 +1,15 @@
 import { kurut } from './index';
 
-import * as schema from './schema';
+import { customers } from './schema';
 
-const db = kurut({ schema });
+const db = kurut({ schema: { customers } });
 
 async function main() {
   console.log('DB: \n', db);
 
-  console.log(db.customers);
+  const customer = await db.customers.throwableFindFirst({});
+
+  console.log('customer: \n', customer);
 
   console.log('Hey');
 }

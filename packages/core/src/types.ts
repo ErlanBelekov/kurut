@@ -1,6 +1,18 @@
+export enum FieldType {
+  String = 'String',
+  Int = 'Int',
+  Float = 'Float',
+  Boolean = 'Boolean',
+}
+
 // FieldDefinition describes almost all info about the field
 // how a field is typed, it's default value, indices, etc
-export type FieldDefinition = {};
+export type FieldDefinition = {
+  type: FieldType;
+  isPrimaryKey: boolean;
+  isForeignKey: boolean;
+  nullable: boolean;
+};
 
 export type FindFirstParams = {};
 
@@ -37,7 +49,7 @@ export interface KurutModel<TFields> {
    * @returns
    */
   throwableFindFirst: (
-    params: FindFirstParams
+    params?: FindFirstParams
   ) => Promise<ThrowableQueryResult<TFields>>;
 
   /**
