@@ -1,5 +1,5 @@
 import { defineModel } from './defineModel';
-import { string } from './modelFields';
+import { string } from './fields';
 
 export const customers = defineModel('customers', {
   id: string(),

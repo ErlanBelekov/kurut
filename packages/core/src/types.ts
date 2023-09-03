@@ -59,5 +59,7 @@ export interface KurutModel<TFields> {
    */
   safeFindFirst: (params: FindFirstParams) => Promise<SafeQueryResult<TFields>>;
 
+  safeCreateOne: () => Promise<SafeQueryResult<TFields>>;
+
   getMetaData: () => KurutModelMetadata<TFields>;
 }
