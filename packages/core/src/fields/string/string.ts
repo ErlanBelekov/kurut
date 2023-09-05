@@ -6,5 +6,6 @@ export function string(): FieldDefinition {
     isPrimaryKey: false,
     isForeignKey: false,
     nullable: false,
+    tsType: '',
   };
 }

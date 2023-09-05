@@ -3,7 +3,7 @@ import { KurutModel } from './types';
 const dotenv = require('dotenv');
 dotenv.config();
 
-export * from './defineModel';
+export * from './table';
 
 type KurutInitParams<T> = {
   schema: T;

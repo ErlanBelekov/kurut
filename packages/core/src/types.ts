@@ -12,6 +12,7 @@ export type FieldDefinition = {
   isPrimaryKey: boolean;
   isForeignKey: boolean;
   nullable: boolean;
+  tsType: KurutModelFieldType;
 };
 
 export type FindFirstParams = {};
@@ -39,10 +40,21 @@ export type KurutModelMetadata<TFields> = {
   tableName: string;
 };
 
+export type CreateOneParams<TFields> = {
+  /**
+   * data should infer the fields
+   */
+  data: TFields;
+};
+
+export type KurutModelFieldType = string | number | boolean | Date;
+
 /**
  * KurutModel describes shape of every model in Kurut ORM: public methods, properties, etc
  */
-export interface KurutModel<TFields> {
+export interface KurutModel<
+  TFields extends Record<string, FieldDefinition['tsType']>
+> {
   /**
    * throwableFindFirst either finds the record or throws an error
    * @param params
@@ -54,12 +66,16 @@ export interface KurutModel<TFields> {
 
   /**
    * safeFindFirst either finds the first matching record or returns null
-   * @param params
+   * @param params - Learn more at www.kurut-orm.com/docs
    * @returns
    */
-  safeFindFirst: (params: FindFirstParams) => Promise<SafeQueryResult<TFields>>;
+  safeFindFirst: (
+    params?: FindFirstParams
+  ) => Promise<SafeQueryResult<TFields>>;
 
-  safeCreateOne: () => Promise<SafeQueryResult<TFields>>;
+  safeCreateOne: (
+    data?: CreateOneParams<TFields>
+  ) => Promise<SafeQueryResult<TFields>>;
 
   getMetaData: () => KurutModelMetadata<TFields>;
 }
