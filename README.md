@@ -34,16 +34,15 @@ Intended Packages Structure:
 @kurut/docs - Docusaurus documentation
 @kurut/postgres - Postgres adapter
 @kurut/mysql - MySQL adapter, should be compatible with PlanetScale too
-@kurut/cockroachdb - CockroachDB Adapter
 @kurut/{INSERT-DATABASE} - it should be simple to add new DB adapters, each adhering to @kurut/core functionality
 ```
 
 Example API:
 
 ```
-import { defineModel, string, int, relation, timestamp, kurut } from "@kurut/core"
+import { table, string, int, relation, timestamp, kurut } from "@kurut/core"
 
-export const User = defineModel("User", {
+export const User = table("User", {
   id: string().id(), // id() marks the column as primary key. multi column primary keys should be available too
   email: string().unique(), // will automatically generate a unique index in migration
   name: string({ maxLength: 30 }).notNull(), // every type builder function such as string() may take parameters, such as maxLength, etc
@@ -51,7 +50,7 @@ export const User = defineModel("User", {
   profile: relation(() => Profile, (tableOne, tableTwo) => ({ references: [tableTwo.id], fields: [tableOne.profileId] }))
 })
 
-export const Profile = defineModel("Profile", {
+export const Profile = table("Profile", {
   id: string().id(),
   createdAt: timestamp().default(() => now()), // default(() => ...) will set default value for this column. strong type safety required, timestamp can't use default(() => string("KURUT"))
   userId: int().notNull(),
