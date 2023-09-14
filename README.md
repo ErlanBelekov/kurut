@@ -72,3 +72,11 @@ async function main() {
 
 main()
 ```
+
+inspired by zod:
+
+import { k } from '@kurut/core'
+
+const firstUser = table.safeFindFirst()
+
+typeof firstUser.name === 'string'

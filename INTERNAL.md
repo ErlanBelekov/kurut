@@ -45,3 +45,25 @@ Terminology WIP questions:
 - field / column . I think column is easier to grisp
 
 the choices make easier ORM learning curve, the API is similar to SQL
+
+or, maybe I can use method chaining like this:
+
+```
+class Model {}
+
+const customers = new Model("customers").fields({ id: primaryKey("id").uuid(), email: text("email").uniqueIndex
+().notNull() })
+
+const orders = new Model("orders").fields(({ primaryKey, text() }) => ({ id: primaryKey("id").uuid(), email: text("email").uniqueIndex
+().notNull() }))
+
+const client = kurut({ schema: { customers } })
+
+// every KurutModel is extended by kurut() method with CRUD methods
+interface KurutModelQueryClient {
+  // list of CRUD methods
+}
+
+client.query.customers.findMany({})
+
+```

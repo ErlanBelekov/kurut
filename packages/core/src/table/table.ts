@@ -1,4 +1,4 @@
-import { KurutModel, KurutModelFieldType } from '../types';
+import { KurutTable, KurutTableFields } from '../types';
 import { getClient } from '../getClient';
 import { NoRowsError } from '../errors';
 
@@ -10,16 +10,12 @@ type CreateTableParams<T> = {
   columns: T;
 };
 
-// {
-//   id: string | number | Date
-// }
-// { id: primaryKey().string() }
-//
-
 // pass table definition to table, and it will return a type-safe model with CRUD methods
-export function table<TColumns extends Record<string, KurutModelFieldType>>(
-  params: CreateTableParams<TColumns>
-): KurutModel<TColumns> {
+export function table<T extends KurutTableFields<Y>, Y>(
+  params: CreateTableParams<T>
+): KurutTable<T, Y> {
+  const { name, columns } = params;
+
   return {
     async throwableFindFirst() {
       const client = await getClient(process.env.DATABASE_URL ?? '');
@@ -48,7 +44,7 @@ export function table<TColumns extends Record<string, KurutModelFieldType>>(
     async safeFindFirst() {
       const client = await getClient(process.env.DATABASE_URL ?? '');
 
-      const text = `SELECT * FROM ${tableName} LIMIT 1`;
+      const text = `SELECT * FROM ${name} LIMIT 1`;
 
       let queryResult;
 
@@ -82,7 +78,7 @@ export function table<TColumns extends Record<string, KurutModelFieldType>>(
     },
     async safeCreateOne() {
       // get client
-      const client = await getClient(process.env.DATABASE_URL ?? '');
+      // const client = await getClient(process.env.DATABASE_URL ?? '');
 
       // insert values(pg package handles sql injection automatically)
 
@@ -94,8 +90,8 @@ export function table<TColumns extends Record<string, KurutModelFieldType>>(
       };
     },
     getMetaData: () => ({
-      fields,
-      tableName,
+      columns,
+      tableName: name,
     }),
   };
 }

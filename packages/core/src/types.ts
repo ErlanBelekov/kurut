@@ -1,19 +1,12 @@
-export enum FieldType {
-  String = 'String',
+import { Column } from './column';
+
+export enum SQLType {
+  Text = 'Text',
   Int = 'Int',
   Float = 'Float',
   Boolean = 'Boolean',
+  Unset = 'Unset',
 }
-
-// FieldDefinition describes almost all info about the field
-// how a field is typed, it's default value, indices, etc
-export type FieldDefinition = {
-  type: FieldType;
-  isPrimaryKey: boolean;
-  isForeignKey: boolean;
-  nullable: boolean;
-  tsType: KurutModelFieldType;
-};
 
 export type FindFirstParams = {};
 
@@ -35,7 +28,7 @@ export type SafeQueryResult<T> = {
  * KurutModelMetadata stores metadata about the model, like its fields, internally used data, etc
  */
 export type KurutModelMetadata<TFields> = {
-  fields: TFields;
+  columns: TFields;
   // tableName is name of the table in SQL database
   tableName: string;
 };
@@ -47,14 +40,12 @@ export type CreateOneParams<TFields> = {
   data: TFields;
 };
 
-export type KurutModelFieldType = string | number | boolean | Date;
+export type KurutTableFields<T extends any> = Record<string, Column<T>>;
 
 /**
  * KurutModel describes shape of every model in Kurut ORM: public methods, properties, etc
  */
-export interface KurutModel<
-  TFields extends Record<string, FieldDefinition['tsType']>
-> {
+export interface KurutTable<TFields extends KurutTableFields<Y>, Y> {
   /**
    * throwableFindFirst either finds the record or throws an error
    * @param params
